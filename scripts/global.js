@@ -153,7 +153,7 @@ function prepareInternalnav() {
 		links[i].destination = sectionId;
 		links[i].onclick = function() {
 			showSection(this.destination);
-			location.href = "about.html#"+sectionId;
+			// location.href = "about.html#"+sectionId;
 			// return false;
 		}
 	}
@@ -451,6 +451,24 @@ function submitFormWithAjax(whichform,thetarget){
 }
 
 
+function getURL() {
+	var thisURL = document.URL;
+	var temp = thisURL.split("#");
+	var sectionId;
+	if(temp.length > 1) sectionId = temp[1];
+	console.log(sectionId);
+	var divs = document.getElementsByTagName("section");
+	console.log(divs.length);
+	for(let i = 0; i < divs.length; i++) {
+		console.log(divs[i].getAttribute("id"));
+		if(divs[i].getAttribute("id") != sectionId) {
+			divs[i].style.display = "none";
+		} else {
+			console.log()
+			divs[i].style.display = "block";
+		}
+	}
+}
 
 
 addLoadEvent(highlightPage);
@@ -463,3 +481,4 @@ addLoadEvent(highlightRows);
 addLoadEvent(displayAbbreviations);
 addLoadEvent(focusLabel);
 addLoadEvent(prepareForms);
+addLoadEvent(getURL);
